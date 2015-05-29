@@ -2,8 +2,8 @@
 
 echo "Installing Heroku Toolbelt"
 
-cd tmp/
+DIR=`pwd`
 
 curl -s https://s3.amazonaws.com/assets.heroku.com/heroku-client/heroku-client.tgz | tar xz
 
-cho 'export PATH=$HOME/tmp/heroku-client/bin:$PATH' >> $PROFILE_D
+echo 'export PATH=$DIR/heroku-client/bin:$PATH'
