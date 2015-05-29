@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo "Heroku Toolbelt"
+exit 0;
