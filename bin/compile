@@ -1,16 +1,23 @@
 #!/bin/bash
 
-echo "Installing Heroku Toolbelt"
+echo "-----> Installing Heroku Toolbelt"
 
-mkdir -p $1/tmp
-cd $1/tmp # Go to the Build directory
+set -e
 
-DIR=`pwd`
+BUILD_DIR=$1
+CACHE_DIR=$2
 
-curl -s https://s3.amazonaws.com/assets.heroku.com/heroku-client/heroku-client.tgz | tar xz
+mkdir -p $CACHE_DIR
+mkdir -p $BUILD_DIR/vendor
 
-export PATH=$DIR/heroku-client/bin:$PATH
+curl -s https://s3.amazonaws.com/assets.heroku.com/heroku-client/heroku-client.tgz -o $CACHE_DIR/heroku-client.tgz
+tar xz $CACHE_DIR/heroku-client.tgz
 
-echo "Heroku Toolbelt installed"
+mv $CACHE_DIR/heroku-client $BUILD_DIR/vendor/heroku-client
 
-heroku --version
+echo "-----> exporting PATH for Heroku Toolbelt"
+PROFILE_PATH="$BUILD_DIR/.profile.d/heroku.sh"
+mkdir -p $(dirname $PROFILE_PATH)
+echo 'export PATH="$PATH:vendor/heroku-client/bin"' >> $PROFILE_PATH
+
+echo "-----> Heroku Toolbelt Installed"
