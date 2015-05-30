@@ -1,3 +1,9 @@
 #!/bin/bash
 
-exit 0;
+cat << EOF
+---
+config_vars:
+  PATH: "/usr/local/bin:/usr/bin:/bin:/app/vendor/heroku-client/bin"
+default_process_types:
+  console: "vendor/heroku-client/bin/heroku"
+EOF
