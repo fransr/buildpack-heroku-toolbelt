@@ -8,12 +8,13 @@ BUILD_DIR=$1
 CACHE_DIR=$2
 
 mkdir -p $CACHE_DIR
-mkdir -p $BUILD_DIR/vendor
+mkdir -p $BUILD_DIR/vendor/
 
-curl -s https://s3.amazonaws.com/assets.heroku.com/heroku-client/heroku-client.tgz -o $CACHE_DIR/heroku-client.tgz
-tar xz $CACHE_DIR/heroku-client.tgz
+curl -s -L -o $CACHE_DIR/heroku-client.tgz https://s3.amazonaws.com/assets.heroku.com/heroku-client/heroku-client.tgz
+cd $CACHE_DIR
+tar xf heroku-client.tgz
 
-mv $CACHE_DIR/heroku-client $BUILD_DIR/vendor/heroku-client
+mv $CACHE_DIR/heroku-client $BUILD_DIR/vendor/
 
 echo "-----> exporting PATH for Heroku Toolbelt"
 PROFILE_PATH="$BUILD_DIR/.profile.d/heroku.sh"
