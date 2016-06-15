@@ -23,6 +23,3 @@ echo 'export PATH="$HOME/heroku-client/bin:$PATH"' >> $PROFILE_PATH
 
 echo "-----> Heroku Toolbelt Installed"
 
-wget https://dl.eff.org/certbot-auto
-chmod a+x certbot-auto
-./certbot-auto
